@@ -1,0 +1,27 @@
+import 'package:equatable/equatable.dart';
+
+class Weekday extends Equatable {
+  final String? en;
+  final String? ar;
+
+  const Weekday({this.en, this.ar});
+
+  factory Weekday.fromCode200StatusOkDataTimingsFajr0430Sunrise0557Dhuhr1202Asr1529Sunset1807Maghrib1807Isha1924Imsak0420Midnight0002Firstthird2204Lastthird0200DateReadable21Mar2025Timestamp1742533200HijriDate21091446FormatDdMmYyyyDay21WeekdayEnAlJumaAArMonthNumber9EnRamaNArDays29Year1446DesignationAbbreviatedAhExpandedAnnoHegiraeHolidaysLailatUlQadrAdjustedHolidaysMethodHjCoSaGregorianDate21032025FormatDdMmYyyyDay21WeekdayEnFridayMonthNumber3EnMarchYear2025DesignationAbbreviatedAdExpandedAnnoDominiLunarSightingFalseMetaLatitude88888888Longitude77777777TimezoneAfricaCairoMethodId5NameEgyptianGeneralAuthorityOfSurveyParamsFajr195Isha175LocationLatitude300444196Longitude312357116LatitudeAdjustmentMethodAngleBasedMidnightModeStandardSchoolStandardOffsetImsak0Fajr0Sunrise0Dhuhr0Asr0Maghrib0Sunset0Isha0Midnight0(
+      Map<String, dynamic> json) {
+    return Weekday(
+      en: json['en'] as String?,
+      ar: json['ar'] as String?,
+    );
+  }
+
+  Map<String, dynamic>
+      toCode200StatusOkDataTimingsFajr0430Sunrise0557Dhuhr1202Asr1529Sunset1807Maghrib1807Isha1924Imsak0420Midnight0002Firstthird2204Lastthird0200DateReadable21Mar2025Timestamp1742533200HijriDate21091446FormatDdMmYyyyDay21WeekdayEnAlJumaAArMonthNumber9EnRamaNArDays29Year1446DesignationAbbreviatedAhExpandedAnnoHegiraeHolidaysLailatUlQadrAdjustedHolidaysMethodHjCoSaGregorianDate21032025FormatDdMmYyyyDay21WeekdayEnFridayMonthNumber3EnMarchYear2025DesignationAbbreviatedAdExpandedAnnoDominiLunarSightingFalseMetaLatitude88888888Longitude77777777TimezoneAfricaCairoMethodId5NameEgyptianGeneralAuthorityOfSurveyParamsFajr195Isha175LocationLatitude300444196Longitude312357116LatitudeAdjustmentMethodAngleBasedMidnightModeStandardSchoolStandardOffsetImsak0Fajr0Sunrise0Dhuhr0Asr0Maghrib0Sunset0Isha0Midnight0() {
+    return {
+      'en': en,
+      'ar': ar,
+    };
+  }
+
+  @override
+  List<Object?> get props => [en, ar];
+}
