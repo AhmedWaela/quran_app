@@ -82,7 +82,7 @@ class QuranView extends StatelessWidget {
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
-                        childAspectRatio: 2, // تناسب أفضل بين العرض والارتفاع
+                        childAspectRatio: 2,
                       ),
                       padding: const EdgeInsets.all(1),
                       itemBuilder: (context, index) {
@@ -99,8 +99,7 @@ class QuranView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
                                 BoxShadow(
-                                  color:
-                                      Colors.black.withOpacity(0.1), // ظل خفيف
+                                  color: Colors.black.withOpacity(0.1),
                                   blurRadius: 4,
                                   offset: const Offset(2, 2),
                                 ),

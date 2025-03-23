@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_app/core/services/api_service.dart';
@@ -13,7 +12,7 @@ class QuranCubit extends Cubit<QuranState> {
   Future<void> getQuran() async {
     emit(QuranLoading());
     final result =
-        await TodayAyahRepoImpl(apiService: ApiService(dio: Dio())).getSurahs();
+        await TodayAyahRepoImpl(apiService: ApiService()).getSurahs();
     result.fold((failure) {
       emit(QuranFailed(message: failure.message));
     }, (sucess) {

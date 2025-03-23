@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
@@ -98,12 +96,8 @@ class RamadanKareemWidget extends StatelessWidget {
         await file.writeAsBytes(bytes);
 
         await Share.shareXFiles([XFile(file.path)], text: text);
-      } else {
-        print("Failed to download image.");
-      }
-    } catch (e) {
-      print("Error sharing image: $e");
-    }
+      } else {}
+    } catch (e) {}
   }
 
   @override

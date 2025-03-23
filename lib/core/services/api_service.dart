@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:quran_app/main.dart';
 
 class ApiService {
-  final Dio dio;
-
-  ApiService({required this.dio});
+  ApiService();
   Future<Map<String, dynamic>> get({required String url}) async {
-    final Response response = await dio.get(url);
+    final Response response = await DioConfig.dio.get(url);
     return response.data;
   }
 }

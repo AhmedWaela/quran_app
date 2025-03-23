@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_app/core/services/api_service.dart';
@@ -9,7 +8,7 @@ part 'hadiths_state.dart';
 
 class HadithsCubit extends Cubit<HadithsState> {
   HadithsCubit() : super(HadithsInitial());
-  var hadithRepoImpl = HadithRepoImpl(apiService: ApiService(dio: Dio()));
+  var hadithRepoImpl = HadithRepoImpl(apiService: ApiService());
 
   Future<void> getHadithsAndAyahs() async {
     emit(HadithLoading());

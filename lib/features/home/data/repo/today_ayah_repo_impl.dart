@@ -2,14 +2,15 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:quran_app/core/services/a.dart';
 import 'package:quran_app/features/home/data/models/surah_model/surah_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quran_app/core/errors/failure.dart';
 import 'package:quran_app/core/services/api_service.dart';
 import 'package:quran_app/features/home/data/models/today_ayah/today_ayah.dart';
 import 'package:quran_app/features/home/data/repo/today_ayah_repo.dart';
 
 class TodayAyahRepoImpl implements TodayAyahRepo {
+  static final prefs = SharedPreferencesPlugin.instance;
   final ApiService apiService;
   static const int totalSurahs = 114;
   static const String ayahKey = "today_ayah";
@@ -20,7 +21,6 @@ class TodayAyahRepoImpl implements TodayAyahRepo {
   @override
   Future<Either<Failure, TodayAyah>> getTodayAyah() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
       final String? storedAyah = prefs.getString(ayahKey);
       final String? storedDate = prefs.getString(dateKey);
       final String today = DateTime.now().toIso8601String().split("T")[0];
@@ -75,7 +75,6 @@ class TodayAyahRepoImpl implements TodayAyahRepo {
     const String ayahKey = "surahs";
 
     try {
-      final prefs = await SharedPreferences.getInstance();
       final String? storedAyah = prefs.getString(ayahKey);
 
       // **استرجاع البيانات المخزنة إذا كانت موجودة ومحدثة**

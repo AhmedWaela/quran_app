@@ -4,7 +4,7 @@ class Ayah extends Equatable {
   final int? number;
   final String? audio;
   final List<dynamic>? audioSecondary;
-  final String? text;
+  String? text;
   final int? numberInSurah;
   final int? juz;
   final int? manzil;
@@ -13,7 +13,7 @@ class Ayah extends Equatable {
   final int? hizbQuarter;
   final bool? sajda;
 
-  const Ayah({
+  Ayah({
     this.number,
     this.audio,
     this.audioSecondary,

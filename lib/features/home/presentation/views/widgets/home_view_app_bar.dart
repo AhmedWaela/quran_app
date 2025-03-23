@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeViewAppBar extends StatelessWidget {
   const HomeViewAppBar({

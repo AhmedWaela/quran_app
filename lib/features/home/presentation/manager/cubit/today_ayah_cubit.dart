@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_app/core/services/api_service.dart';
@@ -12,8 +11,8 @@ class TodayAyahCubit extends Cubit<TodayAyahState> {
 
   Future<void> getTodayAyah() async {
     emit(TodayAyahLoading());
-    final result = await TodayAyahRepoImpl(apiService: ApiService(dio: Dio()))
-        .getTodayAyah();
+    final result =
+        await TodayAyahRepoImpl(apiService: ApiService()).getTodayAyah();
     result.fold(
       (l) {
         emit(TodayAyahFailed(message: l.message));

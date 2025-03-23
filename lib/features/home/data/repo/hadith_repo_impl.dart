@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quran_app/core/errors/failure.dart';
+import 'package:quran_app/core/services/a.dart';
 import 'package:quran_app/core/services/api_service.dart';
 import 'package:quran_app/features/home/data/models/ayah_with_hadith.dart';
 import 'package:quran_app/features/home/data/models/hadith_model/hadith_model.dart';
@@ -11,6 +11,7 @@ import 'package:quran_app/features/home/data/models/today_ayah/today_ayah.dart';
 import 'package:quran_app/features/home/data/repo/hadith_repo.dart';
 
 class HadithRepoImpl implements HadithRepo {
+  static final prefs = SharedPreferencesPlugin.instance;
   final ApiService apiService;
 
   HadithRepoImpl({required this.apiService});
@@ -18,7 +19,6 @@ class HadithRepoImpl implements HadithRepo {
   @override
   Future<Either<Failure, List<HadithOrAyah>>> getHadithsAndAyahs() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
       final String? cachedData = prefs.getString("cachedHadithsWithAyah");
       final String? lastFetchDate = prefs.getString("lastFetchDate");
       final String today = DateTime.now().toIso8601String().split("T")[0];
@@ -110,9 +110,8 @@ class HadithRepoImpl implements HadithRepo {
   @override
   Future<Either<Failure, HadithModel>> getHadith() async {
     try {
-      final shared = await SharedPreferences.getInstance();
-      String? cachedTodayHadith = shared.getString("cachedTodayHadith");
-      String? cachedTodayHadithDate = shared.getString("cachedTodayHadithDate");
+      String? cachedTodayHadith = prefs.getString("cachedTodayHadith");
+      String? cachedTodayHadithDate = prefs.getString("cachedTodayHadithDate");
       String today = DateTime.now().toIso8601String().split("T")[0];
 
       // **التحقق من الكاش**
@@ -131,8 +130,8 @@ class HadithRepoImpl implements HadithRepo {
         return left(ServerFailure("⚠️ لم يتم العثور على حديث."));
       }
       var hadithData = hadithList[0];
-      await shared.setString("cachedTodayHadith", jsonEncode(hadithData));
-      await shared.setString("cachedTodayHadithDate", today);
+      await prefs.setString("cachedTodayHadith", jsonEncode(hadithData));
+      await prefs.setString("cachedTodayHadithDate", today);
       return right(HadithModel.fromMap(hadithData));
     } catch (e) {
       if (e is DioException) {

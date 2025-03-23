@@ -1,27 +1,46 @@
-import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 
 import 'book.dart';
 import 'chapter.dart';
 
-class HadithModel extends Equatable {
+part "hadith_model.g.dart";
+
+@HiveType(typeId: 0)
+class HadithModel extends HiveObject {
+  @HiveField(0)
   final int? id;
+  @HiveField(1)
   final String? hadithNumber;
+  @HiveField(2)
   final String? englishNarrator;
+  @HiveField(3)
   final String? hadithEnglish;
+  @HiveField(4)
   final String? hadithUrdu;
+  @HiveField(5)
   final String? urduNarrator;
+  @HiveField(6)
   final String? hadithArabic;
+  @HiveField(7)
   final dynamic headingArabic;
+  @HiveField(8)
   final dynamic headingUrdu;
+  @HiveField(9)
   final dynamic headingEnglish;
+  @HiveField(10)
   final String? chapterId;
+  @HiveField(11)
   final String? bookSlug;
+  @HiveField(12)
   final String? volume;
+  @HiveField(13)
   final String? status;
+  @HiveField(14)
   final Book? book;
+  @HiveField(15)
   final Chapter? chapter;
 
-  const HadithModel({
+  HadithModel({
     this.id,
     this.hadithNumber,
     this.englishNarrator,
@@ -84,27 +103,5 @@ class HadithModel extends Equatable {
       'book': book?.toMap(),
       'chapter': chapter?.toMap()
     };
-  }
-
-  @override
-  List<Object?> get props {
-    return [
-      id,
-      hadithNumber,
-      englishNarrator,
-      hadithEnglish,
-      hadithUrdu,
-      urduNarrator,
-      hadithArabic,
-      headingArabic,
-      headingUrdu,
-      headingEnglish,
-      chapterId,
-      bookSlug,
-      volume,
-      status,
-      book,
-      chapter,
-    ];
   }
 }
