@@ -87,7 +87,7 @@ flutter:
     - family: Uthman
       fonts:
         - asset: assets\fonts\UthmanicHafs_V22.ttf
-    - family: Taha Naskh
+    - family: AmiriQuran
       fonts:
         - asset: assets\fonts\Uthman Taha Naskh Regular - [UrduFonts.com].ttf
     - family: Diwani

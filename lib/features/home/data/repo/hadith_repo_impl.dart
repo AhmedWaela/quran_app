@@ -10,6 +10,8 @@ import 'package:quran_app/features/home/data/models/hadith_model/hadith_model.da
 import 'package:quran_app/features/home/data/models/today_ayah/today_ayah.dart';
 import 'package:quran_app/features/home/data/repo/hadith_repo.dart';
 
+import '../../../../core/keys/api_keys.dart';
+
 class HadithRepoImpl implements HadithRepo {
   static final prefs = SharedPreferencesPlugin.instance;
   final ApiService apiService;
@@ -33,7 +35,7 @@ class HadithRepoImpl implements HadithRepo {
 
       final hadithResponse = await apiService.get(
         url:
-            r"https://hadithapi.com/public/api/hadiths?apiKey=$2y$10$wRorAoSYCw1WeG3pQJvWtuNnDjQ1xirco4EsnQbPQN6EEzoIETa",
+            "https://hadithapi.com/public/api/hadiths?apiKey=${ApiKeys.apiKey}",
       );
 
       List<dynamic>? hadithsData = hadithResponse["hadiths"]["data"];

@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:quran_app/core/services/a.dart';
-import 'package:quran_app/features/home/data/models/hadith_model/hadith_model.dart';
 import 'package:quran_app/features/home/presentation/views/story_view.dart';
 import 'package:quran_app/features/home/presentation/views/surah_view.dart';
 import 'features/home/presentation/views/navigation_view.dart';
@@ -10,9 +8,6 @@ import 'features/home/presentation/views/navigation_view.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioConfig.init();
-  await Hive.initFlutter();
-  await Hive.openBox("surahs");
-  Hive.registerAdapter(HadithModelAdapter());
   await SharedPreferencesPlugin.init();
   runApp(QuranApp());
 }

@@ -26,12 +26,31 @@ class SharedPreferenceAdapter implements StorageService {
           "Type ${value.runtimeType} is not supported by SharedPreferenceAdapter");
     }
   }
+
+  @override
+  T? get<T>(String key) {
+    final dynamic value = _sharedPreferencesPlugin.get(key);
+    if (value == null) {
+      return null;
+    }
+    return value as T;
+  }
 }
 
 class HiveAdapter implements StorageService {
   @override
-  Future<void> save<T>(String key, T value) async {
-    var box = Hive.box<T>(key);
-    await box.add(value);
+  Future<void> save<T>(String key, T value, {String? boxName}) async {
+    var box = Hive.box<T>(boxName!);
+    await box.put(key, value);
+  }
+
+  @override
+  T? get<T>(String key, {String? boxName}) {
+    if (!Hive.isBoxOpen(boxName!)) {
+      debugPrint("⚠️ Box '$boxName' is not open yet!");
+      return null;
+    }
+    var box = Hive.box<T>(boxName);
+    return box.get(key);
   }
 }
